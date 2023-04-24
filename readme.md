@@ -16,8 +16,36 @@ System Architecture:
 - Companion computer is XU4. we can use raspberry pi instead of XU4.
 The `mavros` and `vrpn_client_node` running on Companion computer, so as the master node of ros.
 
+## Mocap computer settings
 
-## run vrpn_client_node
+1. Align the UAV x-axis (forward direction) roughly with the x-axis of the optitrack system, select all marked points, and right-click to create a rigid body.
+
+![image](config/creat.png)
+
+2. Set `Up Axis` to `Z Axis`, and enable the stream.
+
+![image](config/stream.png)
+
+3. (optional) click the red point to start log. Click it again to stop. Then you can save the log file. We use ENU frame of data in log config:
+
+<img src="config/save.png" width="50%" height="50%" />
+<img src="config/config1.png" width="50%" height="50%" />
+<img src="config/config2.png" width="50%" height="50%" />
+
+After `motive` sends the data to the LAN, download this code on the computer that needs to get the data and compile and run vrpn_client_node.
+## Build 
+
+
+Build the code:
+```bash
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+git clone https://github.com/SCUT-DuctedFan/vrpn_client_ros.git
+cd ..
+catkin_make
+```
+
+## Run vrpn_client_node
 connect to the same wifi with motive computer(IP: 192.168.3.252), and then run
 
 >192.168.3.252 is the computer ip which running motive 
@@ -30,15 +58,16 @@ catkin_make
 roslaunch vrpn_client_ros sample.launch server:=192.168.3.252 
 ```
 
-## result
+## Result
 we can see rviz, and the frame is ENU.
+![image](config/rviz.png)
 
-print the topic of ros:
+Run the follow command to print the topic of ros:
 
 ```bash
 rostopic echo /mavros/vision_pose/pose
 ```
-the terminal output isL
+the terminal output is
 
 ```Console
 ---
@@ -62,7 +91,7 @@ pose:
 
 ```
 
-## run mavros
+## Run mavros
 finally, install [mavros](https://docs.px4.io/main/en/ros/mavros_installation.html) and run it by follow command, then the data transfer to pixhawk. the mavros can 
 
 ROS uses ENU frames by convention. Assume the Optitrack system have set `Up Axis` to `Z Up`, and the data obtained by using the vrpn_client_node node is ENU frame. Through topic remapping, mavros/vision_pose/pose is obtained. MAVROS is responsible for converting the ENU frame of mavros/vision_pose/pose into the NED frame used by px4.
