@@ -7,10 +7,13 @@ Usually the computer running `vrpn_client_node` and the computer running `Motive
 - Send directly to the USB device, and use the serial port to transmit the data to the microcontroller. The coordinate system needs to be transformed manually.
 
 System Architecture:
+
 ![image](config/sys_arch2.png)
+
 ![image](config/mocap-ros.png)
--QGC or offboard control node running on the linux running machine.
--Companion computer is XU4. we can use raspberry pi instead of XU4.
+
+- QGC or offboard control node running on the linux running machine.
+- Companion computer is XU4. we can use raspberry pi instead of XU4.
 The `mavros` and `vrpn_client_node` running on Companion computer, so as the master node of ros.
 
 
