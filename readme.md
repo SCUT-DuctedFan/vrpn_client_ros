@@ -50,11 +50,6 @@ connect to the same wifi with motive computer(IP: 192.168.3.252), and then run
 
 >192.168.3.252 is the computer ip which running motive 
 ```bash
-mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/src
-git clone https://github.com/SCUT-DuctedFan/vrpn_client_ros.git
-cd ..
-catkin_make
 roslaunch vrpn_client_ros sample.launch server:=192.168.3.252 
 ```
 
