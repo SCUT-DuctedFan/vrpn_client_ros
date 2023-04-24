@@ -49,9 +49,9 @@ pose:
 
 ```
 
+## run mavros
 finally, install [mavros](https://docs.px4.io/main/en/ros/mavros_installation.html) and run it by follow command, then the data transfer to pixhawk. the mavros can 
 
-## run mavros
 ROS uses ENU frames by convention. Assume the Optitrack system have set `Up Axis` to `Z Up`, and the data obtained by using the vrpn_client_node node is ENU frame. Through topic remapping, mavros/vision_pose/pose is obtained. MAVROS is responsible for converting the ENU frame of mavros/vision_pose/pose into the NED frame used by px4.
 
 >fcu_url is the usb dev, gcs_url is the QGC(ground control station, gcs) computer IP.
