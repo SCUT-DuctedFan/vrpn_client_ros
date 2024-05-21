@@ -124,5 +124,9 @@ ROS uses ENU frames by convention. Assume the Optitrack system have set `Up Axis
 ```bash
 roslaunch mavros px4.launch fcu_url:=/dev/ttyUSB0:921600 gcs_url:=udp://@192.168.3.190
 ```
+or after setup by [USB Serial Port Software setup on Linux](https://docs.px4.io/main/en/companion_computer/pixhawk_companion.html), run
 
+```bash
+roslaunch mavros px4.launch fcu_url:=/dev/ttyPixhawk:921600 gcs_url:=udp://@192.168.3.190
+```
 
