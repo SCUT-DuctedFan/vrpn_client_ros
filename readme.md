@@ -44,7 +44,35 @@ git clone https://github.com/SCUT-DuctedFan/vrpn_client_ros.git
 cd ..
 catkin_make
 ```
+### another way 
+1. sudo apt-get install ros-noetic-vrpn-client-ros
+2. ping server ip 
+3. roslaunch vrpn_client_ros sample.launch server:=192.168.3.252 
 
+
+For visual directly
+
+1. cd ~/catkin_ws/src
+catkin_create_pkg optitrack
+
+2. cd ~/catkin_ws/src/optitrack
+mkdir launch
+
+Add lunch like this repos.
+
+3. cd ~/catkin_ws/src/optitrack
+mkdir config
+
+Add config like this repos.
+
+4. cd ~/catkin_ws
+catkin_make
+
+5. Source devel/setup.bash
+
+6. roslaunch optitrack sample.launch server:=192.168.3.252  
+
+for raspberry pi, don't run rviz.
 ## Run vrpn_client_node
 connect to the same wifi with motive computer(IP: 192.168.3.252), and then run
 
@@ -87,7 +115,7 @@ pose:
 ```
 
 ## Run mavros
-finally, install [mavros](https://docs.px4.io/main/en/ros/mavros_installation.html) and run it by follow command, then the data transfer to pixhawk. the mavros can 
+finally, install [mavros](https://docs.px4.io/main/en/ros/mavros_installation.html) and run it by follow command, then the data transfer to pixhawk.
 
 ROS uses ENU frames by convention. Assume the Optitrack system have set `Up Axis` to `Z Up`, and the data obtained by using the vrpn_client_node node is ENU frame. Through topic remapping, mavros/vision_pose/pose is obtained. MAVROS is responsible for converting the ENU frame of mavros/vision_pose/pose into the NED frame used by px4.
 
