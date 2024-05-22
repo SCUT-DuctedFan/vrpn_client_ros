@@ -44,7 +44,7 @@ git clone https://github.com/SCUT-DuctedFan/vrpn_client_ros.git
 cd ..
 catkin_make
 ```
-### another way 
+### another way for use vrpn-client-ros
 1. sudo apt-get install ros-noetic-vrpn-client-ros
 2. ping server ip 
 3. roslaunch vrpn_client_ros sample.launch server:=192.168.3.252 
@@ -115,7 +115,16 @@ pose:
 ```
 
 ## Run mavros
-finally, install [mavros](https://docs.px4.io/main/en/ros/mavros_installation.html) and run it by follow command, then the data transfer to pixhawk.
+finally, install [mavros](https://docs.px4.io/main/en/ros/mavros_installation.html) and run it by follow command, then the data transfer to pixhawk. install mavros from Binary is simple:
+ ```bash
+ sudo apt-get install ros-${ROS_DISTRO}-mavros ros-${ROS_DISTRO}-mavros-extras ros-${ROS_DISTRO}-mavros-msgs
+ ```
+Then install GeographicLib datasets by running the install_geographiclib_datasets.sh script:
+```bash
+wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+sudo bash ./install_geographiclib_datasets.sh
+```
+Or you can [build it from source](https://docs.px4.io/main/en/ros/mavros_installation.html#source-installation).
 
 ROS uses ENU frames by convention. Assume the Optitrack system have set `Up Axis` to `Z Up`, and the data obtained by using the vrpn_client_node node is ENU frame. Through topic remapping, mavros/vision_pose/pose is obtained. MAVROS is responsible for converting the ENU frame of mavros/vision_pose/pose into the NED frame used by px4.
 
